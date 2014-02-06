@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Til We Graduate</title>
+        <link href="flipclock.css" rel="stylesheet" />
+        <link href="firstYear.css" rel="stylesheet" />
+        <link href='http://fonts.googleapis.com/css?family=Exo+2:400,300' rel='stylesheet' type='text/css'>
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="flipclock.min.js"></script>
+        <style>
+            body {
+                background-image:url('bg.jpg');
+                background-size: cover;
+                font-family: 'Exo 2', sans-serif;
+            }
+
+            .clock {
+                position: absolute;
+                height: 300px;
+                width: 620px;
+                left: 50%;
+                top: 50%;
+                margin-left: -310px;
+                margin-top: -150px;
+                color: white;
+            }
+
+            .flip-clock-label {
+                font-family: 'Exo 2', sans-serif;
+                color: #ccc !important;
+                font-size: 20px;
+                text-align: center;   
+                margin-left:10px;
+                right: -93px !important;
+            }
+
+            .flip-clock-dot {
+                background:#ccc;
+            }
+
+            .flip-clock-divider.minutes .flip-clock-label {
+                right: -103px !important;
+            }
+
+            .flip-clock-divider.seconds .flip-clock-label {
+                right: -103px !important;
+            }
+
+            .logo {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                width: 100px;
+                height: 28px;
+                background-image: url('byu.png');
+            }
+
+            .text {
+                position: absolute;
+                color: #ccc;
+                top: 50%;
+                left: 50%;
+                display: none;
+            }
+
+            .text.active {
+                display: block;
+            }
+
+            .text.active .til {
+                font-size: 20px;
+                margin-left: -190px;
+                -webkit-animation-name: tilslidein;
+                -webkit-animation-duration: 2s;
+
+                -moz-animation-name: tilslidein;
+                -moz-animation-duration: 2s;
+
+                -ms-animation-name: tilslidein;
+                -ms-animation-duration: 2s;
+            }
+
+            .text.active .graduation {
+                font-size: 80px;
+                margin-top:-30px;
+                margin-left: -190px;
+                -webkit-animation-name: graduationslidein;
+                -webkit-animation-duration: 2s;
+
+                -moz-animation-name: graduationslidein;
+                -moz-animation-duration: 2s;
+
+                -ms-animation-name: graduationslidein;
+                -ms-animation-duration: 2s;
+            }
+
+            @-webkit-keyframes graduationslidein {
+              from {
+                opacity: 0;
+                margin-left:100px;
+              }
+
+              to {
+                opacity: 1;
+                margin-left: -190px;
+              }
+            }
+
+            @-webkit-keyframes tilslidein {
+              from {
+                opacity: 0;
+                margin-left:-300px;
+              }
+
+              to {
+                opacity: 1;
+                margin-left: -190px;
+              }
+            }
+
+            @-moz-keyframes graduationslidein {
+              from {
+                opacity: 0;
+                margin-left:100px;
+              }
+
+              to {
+                opacity: 1;
+                margin-left: -190px;
+              }
+            }
+
+            @-moz-keyframes tilslidein {
+              from {
+                opacity: 0;
+                margin-left:-300px;
+              }
+
+              to {
+                opacity: 1;
+                margin-left: -190px;
+              }
+            }
+
+            @-ms-keyframes graduationslidein {
+              from {
+                opacity: 0;
+                margin-left:100px;
+              }
+
+              to {
+                opacity: 1;
+                margin-left: -190px;
+              }
+            }
+
+            @-ms-keyframes tilslidein {
+              from {
+                opacity: 0;
+                margin-left:-300px;
+              }
+
+              to {
+                opacity: 1;
+                margin-left: -190px;
+              }
+            }
+
+            .first-years {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                width: 500px;
+                margin-left: -250px;
+                font-size: 18px;
+            }
+
+        </style>
+    </head>
+    <body> 
+        <div class="clock"></div>
+        <div class="logo"></div>
+        <div id="text" class="text">
+            <div class="til">'til</div>
+            <div class="graduation">graduation</div>
+        </div>
+        <!-- <div class="first-years">
+            <span>days 'til first-year MISM graduation</span>
+            <div class="first-year-clock"></div>
+        </div> -->
+        <audio src="graduation.mp3" autoplay preload="auto"></audio>
+        <script type="text/javascript">
+            var currentDate = new Date();
+            var graduation = new Date(2014, 3, 25);
+
+            var text = document.getElementById('text');
+            setTimeout(function () {
+                text.className = 'text active';
+            }, 1000);
+
+            var clock = $('.clock').FlipClock((graduation - currentDate) / 1000, {
+                clockFace: 'DailyCounter',
+                countdown: true
+            });
+
+            // var firstYearClock = $('.first-year-clock').FlipClock((new Date(2015,3,23) - currentDate) / 1000, {
+            //     clockFace: 'DailyCounter',
+            //     countdown: true,
+            //     showSeconds: false
+            // });
+        </script>
+    </body>
+</html>
