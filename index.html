@@ -15,6 +15,28 @@
                 font-family: 'Exo 2', sans-serif;
             }
 
+            .first-years {
+                color: #CCC;
+                text-align: center;
+                position: absolute;
+                bottom: 10px;
+                width: 300px;
+                left: 50%;
+                margin-left: -150px;
+                /*opacity:0;*/
+                -webkit-animation-name: firstYearFade;
+                -webkit-animation-duration: 3s;
+                /*-webkit-animation-delay:3s;*/
+
+                -moz-animation-name: firstYearFade;
+                -moz-animation-duration: 3s;
+                /*-moz-animation-delay:3s;*/
+
+                -ms-animation-name: firstYearFade;
+                -ms-animation-duration: 3s;
+                /*-ms-animation-delay:3s;*/
+            }
+
             .clock {
                 position: absolute;
                 height: 300px;
@@ -167,13 +189,16 @@
               }
             }
 
-            .first-years {
-                position: absolute;
-                bottom: 10px;
-                left: 50%;
-                width: 500px;
-                margin-left: -250px;
-                font-size: 18px;
+            @-webkit-keyframes firstYearFade {
+              from {
+                opacity: 0;
+                margin-top:-500px;
+              }
+
+              to {
+                opacity: 1;
+                margin-top:-0px;
+              }
             }
 
         </style>
@@ -185,10 +210,9 @@
             <div class="til">'til</div>
             <div class="graduation">graduation</div>
         </div>
-        <!-- <div class="first-years">
-            <span>days 'til first-year MISM graduation</span>
-            <div class="first-year-clock"></div>
-        </div> -->
+        <div class="first-years">
+            <span>First year MISM? <br /><span class="mism-days"></span> days.</span>
+        </div>
         <audio src="graduation.mp3" autoplay preload="auto"></audio>
         <script type="text/javascript">
             var currentDate = new Date();
@@ -204,11 +228,16 @@
                 countdown: true
             });
 
-            // var firstYearClock = $('.first-year-clock').FlipClock((new Date(2015,3,23) - currentDate) / 1000, {
-            //     clockFace: 'DailyCounter',
-            //     countdown: true,
-            //     showSeconds: false
-            // });
+            var firstYearGrad = new Date(2015,3,25);
+            function updateSecondYears () {
+                $('.mism-days').text(Math.floor(((((firstYearGrad - (new Date()))/1000)/60)/60)/24));
+                setTimeout(function () {
+                    updateSecondYears();
+                }, 60000)    
+            }
+
+            updateSecondYears();
+            
         </script>
     </body>
 </html>
